@@ -28,3 +28,20 @@ const str = `<ul>
 // Fecha de solucio: Miercoles 2 de SEP
 
 // Modalidad de entrega. Pull Request.
+
+const busqueda = 'Redux Video'
+const arr = str.split('\n')
+const videosRedux = arr.filter(v => v.includes(busqueda));
+let minutos = 0;
+let segundos = 0;
+videosRedux.forEach(v => {
+ let duracion = v.substr(v.indexOf('"')+1,v.lastIndexOf('"')-v.indexOf('"')-1);
+ let minSeg = duracion.split(':')
+ minutos += parseInt(minSeg[0]);
+ segundos += parseInt(minSeg[1]);
+})
+let totalSegundosRedux = segundos + (minutos *60);
+console.log(`Total de segundos de videos Redux: ${totalSegundosRedux}`)
+
+
+

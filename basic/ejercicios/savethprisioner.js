@@ -1,7 +1,8 @@
 
-function saveThePrisioner(n,m,s){
-    return 1;
+function saveThePrisioner(n, m, s) {
+
 }
+
 
 
 console.log(saveThePrisioner(1,1,1) === 1);
