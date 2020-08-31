@@ -31,17 +31,24 @@ const str = `<ul>
 
 const busqueda = 'Redux Video'
 const arr = str.split('\n')
-const videosRedux = arr.filter(v => v.includes(busqueda));
-let minutos = 0;
-let segundos = 0;
-videosRedux.forEach(v => {
- let duracion = v.substr(v.indexOf('"')+1,v.lastIndexOf('"')-v.indexOf('"')-1);
- let minSeg = duracion.split(':')
- minutos += parseInt(minSeg[0]);
- segundos += parseInt(minSeg[1]);
-})
-let totalSegundosRedux = segundos + (minutos *60);
-console.log(`Total de segundos de videos Redux: ${totalSegundosRedux}`)
+const videos = arr.map(v => ({tipo:v.substr(v.indexOf('>')+1,v.lastIndexOf('<')-v.indexOf('>')-1), duracion:v.substr(v.indexOf('"')+1,v.lastIndexOf('"')-v.indexOf('"')-1)}))
+
+const calcularTiempo = function(videos){
+  let minutos = 0;
+  let segundos = 0;
+  videos.forEach(video => {
+    if(video.tipo === busqueda){
+      let minSeg = video.duracion.split(":");
+      minutos += parseInt(minSeg[0])
+      segundos += parseInt(minSeg[1])
+    }
+  });
+  let tiempoTotal = segundos + (minutos*60);
+  console.log(`La suma total de las duraciones de los ${busqueda} es de: ${tiempoTotal}`);
+}
+
+calcularTiempo(videos)
+
 
 
 
